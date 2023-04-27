@@ -1,8 +1,7 @@
 @font-face {
   font-family: "RobotoMono";
-  src: local("RobotoMono"), url("../../assets/fonts/RobotoMono-VariableFont_wght.ttf");
+  src: local("RobotoMono"), url("../assets/fonts/RobotoMono-VariableFont_wght.ttf");
 }
-
 html {
   font-size: 10px;
   line-height: 1.15;
@@ -18,7 +17,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-width: 800px;
+  width: 800px;
   margin: 0 auto;
 }
 
@@ -40,11 +39,13 @@ body {
 
 .keyboard {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   padding: 10px;
-  border: 2px solid rgb(15, 15, 15);
+  border: 5px solid rgb(15, 15, 15);
   border-radius: 10px;
-  background: rgb(133, 133, 133);
+  background: rgb(167, 167, 167);
 }
 
 .row {
@@ -64,59 +65,42 @@ body {
   justify-content: center;
   align-items: center;
   width: 45px;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-family: "RobotoMono", sans-serif;
   font-weight: 500;
   border-radius: 5px;
   color: rgb(255, 255, 255);
   background: rgb(79, 79, 79);
+  cursor: pointer;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
 }
-
 .key:hover {
-  background: rgba(253, 205, 116, 0.9);
+  background: rgba(201, 150, 72, 0.7);
 }
-
+.key:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 .key--active {
-  background: rgba(246, 180, 57, 0.8);
-  border-radius: 50%;
+  background: rgba(201, 150, 72, 0.7);
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
-
-.key--backspace,
-.key--caps-lock,
-.key--shift-left {
+.key--backspace, .key--caps-lock, .key--shift-left {
   width: 112px;
 }
-
 .key--tab {
   width: 56px;
 }
-
-.key--enter,
-.key--shift-right {
+.key--enter, .key--shift-right {
   width: 98px;
 }
-
 .key--space {
   width: 375px;
 }
-
-.key--tab,
-.key--caps-lock,
-.key--shift-left,
-.key--ctrl-left,
-.key--win,
-.key--alt-left,
-.key--backspace,
-.key--del,
-.key--enter,
-.key--arrow-up,
-.key--shift-right,
-.key--alt-right,
-.key--arrow-left,
-.key--arrow-down,
-.key--arrow-right,
-.key--ctrl-right {
+.key--tab, .key--caps-lock, .key--shift-left, .key--ctrl-left, .key--win, .key--alt-left, .key--backspace, .key--del, .key--enter, .key--arrow-up, .key--shift-right, .key--alt-right, .key--arrow-left, .key--arrow-down, .key--arrow-right, .key--ctrl-right {
   background: rgb(42, 42, 42);
   font-weight: 700;
 }

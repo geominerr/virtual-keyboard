@@ -208,7 +208,7 @@ export const KEYBOARD = {
       valuePressShift: 'Del',
       valueRu: 'Del',
       valuePressShiftRu: 'Del',
-      styleCSS: 'key',
+      styleCSS: 'key key--del',
     },
     CapsLock: {
       value: 'CapsLock',

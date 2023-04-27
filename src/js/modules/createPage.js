@@ -3,8 +3,13 @@ export function createPage(obj) {
   const body = document.querySelector('body');
   const wrapper = createElement('div', 'wrapper');
   const title = createElement('h1', 'title');
+  title.innerText = 'Virtual keyboar';
   const textArea = createElement('textarea', 'textarea');
   const keyboard = createElement('div', 'keyboard');
+  const paragraphOS = createElement('p', 'description');
+  paragraphOS.innerText = 'The keyboard was created in the Windows operating system';
+  const paragraphLang = createElement('p', 'description');
+  paragraphLang.innerText = 'To switch the language combination: left ctrl + alt';
 
   for (let i = 0; i < rows.length; i += 1) {
     const rowKeys = createRowKeys(rows[i], keys);
@@ -12,9 +17,8 @@ export function createPage(obj) {
     keyboard.appendChild(rowKeys);
   }
 
-  wrapper.appendChild(title);
-  wrapper.appendChild(textArea);
-  wrapper.appendChild(keyboard);
+  addElements(wrapper, title, textArea, keyboard, paragraphOS, paragraphLang);
+
   body.appendChild(wrapper);
 }
 
@@ -43,4 +47,10 @@ function createKey(key, obj) {
   button.innerHTML = valueKey;
 
   return button;
+}
+
+function addElements(parent, ...elements) {
+  for (let i = 0; i < elements.length; i += 1) {
+    parent.appendChild(elements[i]);
+  }
 }

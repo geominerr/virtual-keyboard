@@ -3,11 +3,11 @@ export function createPage(obj) {
   const body = document.querySelector('body');
   const wrapper = createElement('div', 'wrapper');
   const title = createElement('h1', 'title');
-  title.innerText = 'Virtual keyboar';
+  title.innerText = 'Virtual keyboard';
   const textArea = createElement('textarea', 'textarea');
   const keyboard = createElement('div', 'keyboard');
   const paragraphOS = createElement('p', 'description');
-  paragraphOS.innerText = 'The keyboard was created in the Windows operating system';
+  paragraphOS.innerText = 'The keyboard was created in the Windows OS';
   const paragraphLang = createElement('p', 'description');
   paragraphLang.innerText = 'To switch the language combination: left ctrl + alt';
 

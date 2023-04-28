@@ -83,26 +83,44 @@ body {
   transform: translateY(0px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
-.key--active {
-  background: rgba(201, 150, 72, 0.7);
-  transform: translateY(0px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-.key--backspace, .key--caps-lock, .key--shift-left {
+.key--backspace,
+.key--caps-lock,
+.key--shift-left {
   width: 112px;
 }
 .key--tab {
   width: 56px;
 }
-.key--enter, .key--shift-right {
+.key--enter,
+.key--shift-right {
   width: 98px;
 }
 .key--space {
   width: 375px;
 }
-.key--tab, .key--caps-lock, .key--shift-left, .key--ctrl-left, .key--win, .key--alt-left, .key--backspace, .key--del, .key--enter, .key--arrow-up, .key--shift-right, .key--alt-right, .key--arrow-left, .key--arrow-down, .key--arrow-right, .key--ctrl-right {
+.key--tab,
+.key--caps-lock,
+.key--shift-left,
+.key--ctrl-left,
+.key--win,
+.key--alt-left,
+.key--backspace,
+.key--del,
+.key--enter,
+.key--arrow-up,
+.key--shift-right,
+.key--alt-right,
+.key--arrow-left,
+.key--arrow-down,
+.key--arrow-right,
+.key--ctrl-right {
   background: rgb(42, 42, 42);
   font-weight: 700;
+}
+.key--active {
+  background: rgba(201, 150, 72, 0.7);
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .description {

@@ -13,6 +13,13 @@ export const KEYBOARD = {
       'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN',
       'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'Space', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'Tab', 'Enter', 'Backspace', 'Delete',
     ],
+    
+  keysShift:
+    ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal',
+      'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'KeyA',
+      'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN',
+      'KeyM', 'Comma', 'Period', 'Slash',
+    ],
 
   keys: {
     Backquote: {
@@ -33,7 +40,7 @@ export const KEYBOARD = {
       value: '2',
       valuePressShift: '@',
       valueRu: '2',
-      valuePressShiftRu: '&quot;',
+      valuePressShiftRu: '"',
       styleCSS: 'key',
     },
     Digit3: {
@@ -66,7 +73,7 @@ export const KEYBOARD = {
     },
     Digit7: {
       value: '7',
-      valuePressShift: '&amp;',
+      valuePressShift: '&',
       valueRu: '7',
       valuePressShiftRu: '?',
       styleCSS: 'key',
@@ -296,8 +303,8 @@ export const KEYBOARD = {
       styleCSS: 'key',
     },
     Quote: {
-      value: '&#39;',
-      valuePressShift: '&quot;',
+      value: '\'',
+      valuePressShift: '"',
       valueRu: 'э',
       valuePressShiftRu: 'Э',
       styleCSS: 'key',
@@ -360,14 +367,14 @@ export const KEYBOARD = {
     },
     Comma: {
       value: ',',
-      valuePressShift: '&lt;',
+      valuePressShift: '<',
       valueRu: 'б',
       valuePressShiftRu: 'Б',
       styleCSS: 'key',
     },
     Period: {
       value: '.',
-      valuePressShift: '&gt;',
+      valuePressShift: '>',
       valueRu: 'ю',
       valuePressShiftRu: 'Ю',
       styleCSS: 'key',

@@ -5,6 +5,7 @@ export function createPage(obj) {
   const title = createElement('h1', 'title');
   title.innerText = 'Virtual keyboard';
   const textArea = createElement('textarea', 'textarea');
+  textArea.setAttribute('autofocus', true);
   const keyboard = createElement('div', 'keyboard');
   const paragraphOS = createElement('p', 'description');
   paragraphOS.innerText = 'The keyboard was created in the Windows OS';

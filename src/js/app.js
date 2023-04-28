@@ -4,4 +4,4 @@ import { addEventHandler } from './modules/eventHandler.js';
 
 createPage(KEYBOARD);
 
-addEventHandler();
+addEventHandler(KEYBOARD);

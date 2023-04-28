@@ -1,8 +1,11 @@
-export function addEventHandler() {
+import { editTextAreaData } from "./buttonActions.js";
+
+export function addEventHandler(keyboardObj) {
+  const { keysChar } = keyboardObj;
   const textArea = document.querySelector('.textarea');
   const keys = document.querySelectorAll('.key');
 
-  textArea.addEventListener('blur', (e)=> {
+  textArea.addEventListener('blur', (e) => {
     e.preventDefault();
     textArea.focus();
   })
@@ -10,9 +13,13 @@ export function addEventHandler() {
 
   document.addEventListener('click', (e) => {
     let target = e.target;
+    for (let i = 0; i < keys.length; i += 1) {
+      if (target.id == keys[i].id) {
 
-    if (target.classList.contains('key')) {
-      textArea.value += target.innerHTML;
+        if (keysChar.includes(keys[i].id)) {
+          editTextAreaData(textArea, keys[i]);
+        }
+      }
     }
   })
 
@@ -22,7 +29,10 @@ export function addEventHandler() {
     for (let i = 0; i < keys.length; i += 1) {
       if (e.code == keys[i].id) {
         keys[i].classList.add("key--active");
-        textArea.value += keys[i].innerHTML;
+
+        if (keysChar.includes(keys[i].id)) {
+          editTextAreaData(textArea, keys[i]);
+        }
       }
     }
   });

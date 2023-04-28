@@ -44,6 +44,7 @@ function createKey(key, obj) {
   const style = obj[key].styleCSS;
   const valueKey = obj[key].value;
   const button = createElement('div', style);
+  button.setAttribute('id', key);
   button.innerHTML = valueKey;
 
   return button;

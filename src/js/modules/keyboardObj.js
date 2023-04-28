@@ -205,9 +205,9 @@ export const KEYBOARD = {
       styleCSS: 'key',
     },
     Backslash: {
-      value: '\'',
+      value: '\\',
       valuePressShift: '|',
-      valueRu: '\'',
+      valueRu: '\\',
       valuePressShiftRu: '/',
       styleCSS: 'key',
     },

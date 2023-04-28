@@ -1,9 +1,9 @@
-import { editTextAreaData } from "./buttonActions.js";
+import { editTextAreaData, changeCharValue } from "./buttonActions.js";
 
 export function addEventHandler(keyboardObj) {
-  const { keysChar } = keyboardObj;
+  const { keysChar, keysShift, keys} = keyboardObj;
   const textArea = document.querySelector('.textarea');
-  const keys = document.querySelectorAll('.key');
+  const buttons = document.querySelectorAll('.key');
 
   textArea.addEventListener('blur', (e) => {
     e.preventDefault();
@@ -13,11 +13,11 @@ export function addEventHandler(keyboardObj) {
 
   document.addEventListener('click', (e) => {
     let target = e.target;
-    for (let i = 0; i < keys.length; i += 1) {
-      if (target.id == keys[i].id) {
+    for (let i = 0; i < buttons.length; i += 1) {
+      if (target.id == buttons[i].id) {
 
-        if (keysChar.includes(keys[i].id)) {
-          editTextAreaData(textArea, keys[i]);
+        if (keysChar.includes(buttons[i].id)) {
+          editTextAreaData(textArea, buttons[i]);
         }
       }
     }
@@ -26,12 +26,16 @@ export function addEventHandler(keyboardObj) {
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
 
-    for (let i = 0; i < keys.length; i += 1) {
-      if (e.code == keys[i].id) {
-        keys[i].classList.add("key--active");
+    for (let i = 0; i < buttons.length; i += 1) {
+      if (e.code == buttons[i].id) {
+        buttons[i].classList.add("key--active");
 
-        if (keysChar.includes(keys[i].id)) {
-          editTextAreaData(textArea, keys[i]);
+        if (keysChar.includes(buttons[i].id)) {
+          editTextAreaData(textArea, buttons[i]);
+        } else {
+          if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {
+            changeCharValue(keys, keysShift, buttons);
+          }
         }
       }
     }
@@ -39,10 +43,10 @@ export function addEventHandler(keyboardObj) {
 
   textArea.addEventListener('keyup', (e) => {
     e.preventDefault();
-    for (let i = 0; i < keys.length; i += 1) {
-      if (e.code == keys[i].id) {
-        keys[i].classList.remove("key--active");
+    for (let i = 0; i < buttons.length; i += 1) {
+      if (e.code == buttons[i].id) {
+        buttons[i].classList.remove("key--active");
       }
     }
   })
-};
+}

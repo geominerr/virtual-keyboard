@@ -1,4 +1,4 @@
-export function editTextAreaData(textarea, key) {
+ export function editTextAreaData(textarea, key) {
   const buttonEdit = ['Enter', 'Tab', 'Space', 'Backspace', 'Delete'];
   const positionCursor = getPositionCursor(textarea);
 
@@ -12,7 +12,7 @@ export function editTextAreaData(textarea, key) {
       changeTextAreaValue(textarea, positionCursor, '\t');
     }
     if (key.id == 'Space') {
-      changeTextAreaValue(textarea, positionCursor, '\ ');
+      changeTextAreaValue(textarea, positionCursor, ' ');
     }
     if (key.id == 'Backspace') {
       if (positionCursor.length) {
@@ -62,6 +62,18 @@ export function editTextAreaData(textarea, key) {
   }
 }
 
+export function changeCharValue(valueKeys, listKeys, elemKeys) {
+  for (let i = 0; i < elemKeys.length; i += 1) {
+    if (listKeys.includes(elemKeys[i].id)) {
+      elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
+    }
+  }
+}
+
+function changeLetterCase() { }
+
+function changeLanguage() { }
+
 function getPositionCursor(textarea) {
   const startCursor = textarea.selectionStart;
   const endCursor = textarea.selectionEnd;
@@ -97,3 +109,4 @@ function changeTextAreaValue(textarea, position, char) {
     }
   }
 }
+

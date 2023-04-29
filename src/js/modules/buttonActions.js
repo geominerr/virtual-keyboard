@@ -106,7 +106,30 @@ export function changeCharValue(valueKeys, elemKeys, keyboardState) {
   }
 }
 
-function changeLetterCase() { }
+export function changeLetterCase(elemKeys) {
+  const alphabetEnLowerCase = 'abcdefghijklmnopqrstuvwxyz';
+  const alphabetEnUpperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const alphabetRuLowerCase = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
+  const ingnoreButtons =
+    ['Tab', 'Enter', 'Backspace', 'Delete', 'ControlLeft', 'ControlRight',
+      'MetaLeft', 'AltLeft', 'AltRight', 'ShiftLeft', 'ShiftRight', 'Delete', 'CapsLock'];
+
+  for (let i = 0; i < elemKeys.length; i += 1) {
+    if (!ingnoreButtons.includes(elemKeys[i].id)) {
+      if (alphabetEnLowerCase.includes(elemKeys[i].innerText)) {
+        elemKeys[i].innerText = elemKeys[i].innerText.toUpperCase();
+      } else if (alphabetEnUpperCase.includes(elemKeys[i].innerText)) {
+        elemKeys[i].innerText = elemKeys[i].innerText.toLowerCase();
+      } else if (alphabetRuLowerCase.includes(elemKeys[i].innerText)) {
+        elemKeys[i].innerText = elemKeys[i].innerText.toUpperCase();
+      } else {
+        elemKeys[i].innerText = elemKeys[i].innerText.toLowerCase();
+      }
+    }
+  }
+
+
+}
 
 function changeLanguage() { }
 

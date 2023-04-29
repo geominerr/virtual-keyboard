@@ -1,4 +1,4 @@
-import { editTextAreaData, changeCharValue } from './buttonActions.js';
+import { editTextAreaData, changeCharValue, changeLetterCase } from './buttonActions.js';
 
 const keyboardState = {
   language: 'en',
@@ -42,6 +42,7 @@ export function addEventHandler(keyboardObj) {
   const buttons = document.querySelectorAll('.key');
   const shiftLeft = document.getElementById('ShiftLeft');
   const shiftRight = document.getElementById('ShiftRight');
+  const capsLock = document.getElementById('CapsLock');
 
   textArea.addEventListener('blur', (e) => {
     e.preventDefault();
@@ -51,6 +52,17 @@ export function addEventHandler(keyboardObj) {
 
   document.addEventListener('click', (e) => {
     let target = e.target;
+
+    if (target.id == 'CapsLock') {
+      changeLetterCase(buttons);
+      if (!target.classList.contains('key--active')) {
+        target.classList.add('key--active');
+        keyboardState.pressKey(target.id);
+      } else {
+        target.classList.remove('key--active');
+        keyboardState.pressKey(target.id);
+      }
+    }
 
     if (target.id == 'ShiftLeft' || target.id == 'ShiftRight') {
       if (keyboardState.isShiftPress) {
@@ -103,7 +115,18 @@ export function addEventHandler(keyboardObj) {
 
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
-    console.log('blaaaaaaa');
+
+    if (e.code == 'CapsLock') {
+      changeLetterCase(buttons);
+      if (!capsLock.classList.contains('key--active')) {
+        capsLock.classList.add('key--active');
+        keyboardState.pressKey(e.code);
+      } else {
+        capsLock.classList.remove('key--active');
+        keyboardState.pressKey(e.code);
+      }
+    }
+
     for (let i = 0; i < buttons.length; i += 1) {
       if (e.code == buttons[i].id) {
         buttons[i].classList.add('key--active');
@@ -112,12 +135,15 @@ export function addEventHandler(keyboardObj) {
           editTextAreaData(textArea, buttons[i]);
         } else {
           if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {
-            if (!keyboardState.isShiftPress)
+            if (!keyboardState.isShiftPress) {
               changeCharValue(keys, buttons, keyboardState);
-            keyboardState.pressKey(e.code);
+              keyboardState.pressKey(e.code);
+            }
           }
         }
       }
+
+
     }
   });
 
@@ -128,6 +154,10 @@ export function addEventHandler(keyboardObj) {
       if (e.code == buttons[i].id) {
         buttons[i].classList.remove('key--active');
       }
+    }
+
+    if (keyboardState.isCapsPress) {
+      capsLock.classList.add('key--active');
     }
 
     if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {

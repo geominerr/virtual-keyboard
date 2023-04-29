@@ -1,4 +1,4 @@
-import { editTextAreaData, changeCharValue } from "./buttonActions.js";
+import { editTextAreaData, changeCharValue } from './buttonActions.js';
 
 export function addEventHandler(keyboardObj) {
   const { keysChar, keysShift, keys} = keyboardObj;
@@ -8,7 +8,7 @@ export function addEventHandler(keyboardObj) {
   textArea.addEventListener('blur', (e) => {
     e.preventDefault();
     textArea.focus();
-  })
+  });
 
 
   document.addEventListener('click', (e) => {
@@ -21,14 +21,14 @@ export function addEventHandler(keyboardObj) {
         }
       }
     }
-  })
+  });
 
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
 
     for (let i = 0; i < buttons.length; i += 1) {
       if (e.code == buttons[i].id) {
-        buttons[i].classList.add("key--active");
+        buttons[i].classList.add('key--active');
 
         if (keysChar.includes(buttons[i].id)) {
           editTextAreaData(textArea, buttons[i]);
@@ -45,8 +45,8 @@ export function addEventHandler(keyboardObj) {
     e.preventDefault();
     for (let i = 0; i < buttons.length; i += 1) {
       if (e.code == buttons[i].id) {
-        buttons[i].classList.remove("key--active");
+        buttons[i].classList.remove('key--active');
       }
     }
-  })
+  });
 }

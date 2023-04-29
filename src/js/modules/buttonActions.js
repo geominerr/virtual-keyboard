@@ -1,4 +1,4 @@
- export function editTextAreaData(textarea, key) {
+export function editTextAreaData(textarea, key) {
   const buttonEdit = ['Enter', 'Tab', 'Space', 'Backspace', 'Delete'];
   const positionCursor = getPositionCursor(textarea);
 
@@ -36,7 +36,7 @@
         }
       }
     }
-    if (key.id == "Delete") {
+    if (key.id == 'Delete') {
       if (positionCursor.length) {
         let text = textarea.value;
         let textBefore = text.substring(0, positionCursor[0]);
@@ -51,7 +51,7 @@
           let textBefore = text.substring(0, positionCursor);
           let textAfter = text.substring(positionCursor + 1, text.length);
 
-          console.log(text.length, positionCursor)
+          console.log(text.length, positionCursor);
           textarea.value = textBefore + textAfter;
           textarea.selectionStart = positionCursor;
           textarea.selectionEnd = textarea.selectionStart;

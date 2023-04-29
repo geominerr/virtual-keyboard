@@ -62,10 +62,46 @@ export function editTextAreaData(textarea, key) {
   }
 }
 
-export function changeCharValue(valueKeys, listKeys, elemKeys) {
+export function changeCharValue(valueKeys, elemKeys, keyboardState) {
+  const listKeys =
+    ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal',
+      'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'KeyA',
+      'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN',
+      'KeyM', 'Comma', 'Period', 'Slash',
+    ];
+  const { isCapsPress, language, isShiftPress } = keyboardState;
+
   for (let i = 0; i < elemKeys.length; i += 1) {
     if (listKeys.includes(elemKeys[i].id)) {
-      elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
+      if (language == 'en') {
+        if (!isCapsPress) {
+          if (!isShiftPress) {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
+          } else {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].value;
+          }
+        } else {
+          if (!isShiftPress) {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].value;
+          } else {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
+          }
+        }
+      } else {
+        if (!isCapsPress) {
+          if (!isShiftPress) {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShiftRu;
+          } else {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valueRu;
+          }
+        } else {
+          if (!isShiftPress) {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valueRu;
+          } else {
+            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShiftRu;
+          }
+        }
+      }
     }
   }
 }

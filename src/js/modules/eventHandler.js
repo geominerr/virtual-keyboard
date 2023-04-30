@@ -1,4 +1,4 @@
-import { editTextAreaData, changeCharValue, changeLetterCase } from './buttonActions.js';
+import { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage } from './buttonActions.js';
 
 const keyboardState = {
   language: 'en',
@@ -32,6 +32,10 @@ const keyboardState = {
     if (keyCode == 'AltLeft' || keyCode == 'AlrRight') {
       this.isAltPress = false;
     }
+  },
+
+  changeLanguage() {
+    this.language = this.language == 'en' ? 'ru' : 'en';
   }
 
 };
@@ -107,9 +111,6 @@ export function addEventHandler(keyboardObj) {
         }
       }
     }
-
-
-    console.log(keyboardState.isShiftPress);
   });
 
 
@@ -124,6 +125,17 @@ export function addEventHandler(keyboardObj) {
       } else {
         capsLock.classList.remove('key--active');
         keyboardState.pressKey(e.code);
+      }
+    }
+
+    if (e.code == 'ControlLeft') {
+      keyboardState.pressKey(e.code);
+    }
+
+    if (e.code == 'AltLeft') {
+      if (keyboardState.isCtrlPress) {
+        keyboardState.changeLanguage();
+        changeLanguage(keys, buttons, keyboardState);
       }
     }
 
@@ -142,8 +154,6 @@ export function addEventHandler(keyboardObj) {
           }
         }
       }
-
-
     }
   });
 
@@ -154,6 +164,10 @@ export function addEventHandler(keyboardObj) {
       if (e.code == buttons[i].id) {
         buttons[i].classList.remove('key--active');
       }
+    }
+
+    if (e.code == 'ControlLeft' || e.code == 'ControlRight') {
+      keyboardState.unPressKey(e.code);
     }
 
     if (keyboardState.isCapsPress) {

@@ -74,35 +74,23 @@ export function changeCharValue(valueKeys, elemKeys, keyboardState) {
   for (let i = 0; i < elemKeys.length; i += 1) {
     if (listKeys.includes(elemKeys[i].id)) {
       if (language == 'en') {
-        if (!isCapsPress) {
-          if (!isShiftPress) {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
-          } else {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].value;
-          }
+        if (!isShiftPress) {
+          elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
         } else {
-          if (!isShiftPress) {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].value;
-          } else {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShift;
-          }
+          elemKeys[i].innerText = valueKeys[elemKeys[i].id].value;
         }
       } else {
-        if (!isCapsPress) {
-          if (!isShiftPress) {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShiftRu;
-          } else {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valueRu;
-          }
+        if (!isShiftPress) {
+          elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShiftRu;
         } else {
-          if (!isShiftPress) {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valueRu;
-          } else {
-            elemKeys[i].innerText = valueKeys[elemKeys[i].id].valuePressShiftRu;
-          }
+          elemKeys[i].innerText = valueKeys[elemKeys[i].id].valueRu;
         }
       }
     }
+  }
+  
+  if (isCapsPress) {
+    changeLetterCase(elemKeys);
   }
 }
 

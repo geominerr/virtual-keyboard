@@ -36,10 +36,26 @@ const keyboardState = {
 
   changeLanguage() {
     this.language = this.language == 'en' ? 'ru' : 'en';
+  },
+
+  saveLanguageToLocalStorage() {
+    localStorage.setItem('PinkPeppaPig', JSON.stringify(keyboardState));
+  },
+
+  setLanguage() {
+    if (localStorage.getItem('PinkPeppaPig')) {
+      const savedKeyboardState = JSON.parse(localStorage.getItem('PinkPeppaPig1'));
+      if (savedKeyboardState?.language) {
+        this.language = savedKeyboardState.language;
+      } else {
+        console.warn('Anyone else used PinkPeppaPig :-0 ?! Please clear localStorage!');
+      }
+    } else {
+      console.warn('Please enable localStorage in your browser settings!');
+    }
   }
-
 };
-
+keyboardState.setLanguage();
 export function addEventHandler(keyboardObj) {
   const { keysChar, keys } = keyboardObj;
   const textArea = document.querySelector('.textarea');
@@ -113,7 +129,6 @@ export function addEventHandler(keyboardObj) {
     }
   });
 
-
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
 
@@ -136,6 +151,7 @@ export function addEventHandler(keyboardObj) {
       if (keyboardState.isCtrlPress) {
         keyboardState.changeLanguage();
         changeLanguage(keys, buttons, keyboardState);
+        keyboardState.saveLanguageToLocalStorage();
       }
     }
 

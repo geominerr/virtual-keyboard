@@ -1,4 +1,4 @@
-export function createPage(obj) {
+export function createPage(obj, language) {
   const { rows, keys } = obj;
   const body = document.querySelector('body');
   const wrapper = createElement('div', 'wrapper');
@@ -13,7 +13,7 @@ export function createPage(obj) {
   paragraphLang.innerText = 'To switch the language combination: left ctrl + alt';
 
   for (let i = 0; i < rows.length; i += 1) {
-    const rowKeys = createRowKeys(rows[i], keys);
+    const rowKeys = createRowKeys(rows[i], keys, language);
 
     keyboard.appendChild(rowKeys);
   }
@@ -30,20 +30,20 @@ function createElement(tag, style) {
   return element;
 }
 
-function createRowKeys(row, obj) {
+function createRowKeys(row, obj, language) {
   const rowElement = createElement('div', 'row');
 
   for (let i = 0; i < row.length; i += 1) {
-    const key = createKey(row[i], obj);
+    const key = createKey(row[i], obj, language);
     rowElement.appendChild(key);
   }
 
   return rowElement;
 }
 
-function createKey(key, obj) {
+function createKey(key, obj, language) {
   const style = obj[key].styleCSS;
-  const valueKey = obj[key].value;
+  const valueKey = language == 'en' ? obj[key].value : obj[key].valueRu;
   const button = createElement('div', style);
   button.setAttribute('id', key);
   button.innerHTML = valueKey;

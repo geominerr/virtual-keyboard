@@ -125,7 +125,7 @@ function changeLanguage(valueKeys, elemKeys, keyboardState) {
       'KeyM', 'Comma', 'Period', 'Slash',
     ];
   const { isCapsPress, language, isShiftPress } = keyboardState;
-  console.log(language);
+
   for (let i = 0; i < elemKeys.length; i += 1) {
     if (listKeys.includes(elemKeys[i].id)) {
       if (language == 'en') {
@@ -143,10 +143,57 @@ function changeLanguage(valueKeys, elemKeys, keyboardState) {
       }
     }
   }
-  console.log('Function work')
+
   if (isCapsPress) {
     changeLetterCase(elemKeys);
   }
+}
+
+function copyText(textarea, temp) {
+  let positionCursor = getPositionCursor(textarea);
+
+  if (!positionCursor.length) {
+    return temp;
+  }
+
+  let text = textarea.value;
+  temp = text.substring(positionCursor[0], positionCursor[1] + 1);
+  return temp;
+}
+
+function selectAllText(textarea) {
+  textarea.select();
+}
+
+
+function pasteText(textarea, temp) {
+  const positionCursor = getPositionCursor(textarea);
+
+  if (positionCursor.length) {
+    let text = textarea.value;
+    let textBefore = text.substring(0, positionCursor[0]);
+    let textAfter = text.substring(positionCursor[1], text.length);
+
+    textarea.value = textBefore + temp + textAfter;
+    textarea.selectionStart = positionCursor[0] + temp.length;
+    textarea.selectionEnd = textarea.selectionStart;
+  } else {
+    if (!positionCursor.length && positionCursor !== textarea.value.length - 1) {
+      let text = textarea.value;
+      let textBefore = text.substring(0, positionCursor);
+      let textAfter = text.substring(positionCursor, text.length);
+
+      textarea.value = textBefore + temp + textAfter;
+      textarea.selectionStart = positionCursor + temp.length;
+      textarea.selectionEnd = textarea.selectionStart;
+    } else {
+      textarea.value += temp;
+    }
+  }
+}
+
+function cancelLastInput(textarea, stack){
+  
 }
 
 function getPositionCursor(textarea) {
@@ -185,4 +232,4 @@ function changeTextAreaValue(textarea, position, char) {
   }
 }
 
-export { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage };
+export { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage, copyText, selectAllText, pasteText };

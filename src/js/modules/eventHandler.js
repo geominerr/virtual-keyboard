@@ -1,4 +1,4 @@
-import { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage } from './buttonActions.js';
+import { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage, copyText, selectAllText, pasteText } from './buttonActions.js';
 
 export function addEventHandler(keyboardObj, keyboardState) {
   const { keysChar, keys } = keyboardObj;
@@ -7,12 +7,12 @@ export function addEventHandler(keyboardObj, keyboardState) {
   const shiftLeft = document.getElementById('ShiftLeft');
   const shiftRight = document.getElementById('ShiftRight');
   const capsLock = document.getElementById('CapsLock');
+  let clipBoard = '';
 
   textArea.addEventListener('blur', (e) => {
     e.preventDefault();
     textArea.focus();
   });
-
 
   document.addEventListener('click', (e) => {
     let target = e.target;
@@ -75,6 +75,7 @@ export function addEventHandler(keyboardObj, keyboardState) {
 
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (e.code == 'CapsLock') {
       changeLetterCase(buttons);
@@ -99,12 +100,32 @@ export function addEventHandler(keyboardObj, keyboardState) {
       }
     }
 
+    if (e.code == 'KeyA') {
+      if (keyboardState.isCtrlPress) {
+        selectAllText(textArea);
+      }
+    }
+
+    if (e.code == 'KeyC') {
+      if (keyboardState.isCtrlPress) {
+        clipBoard = copyText(textArea, clipBoard);
+      }
+    }
+
+    if (e.code == 'KeyV') {
+      if (keyboardState.isCtrlPress) {
+        pasteText(textArea, clipBoard);
+      }
+    }
+
     for (let i = 0; i < buttons.length; i += 1) {
       if (e.code == buttons[i].id) {
         buttons[i].classList.add('key--active');
 
         if (keysChar.includes(buttons[i].id)) {
-          editTextAreaData(textArea, buttons[i]);
+          if (!keyboardState.isCtrlPress) {
+            editTextAreaData(textArea, buttons[i]);
+          }
         } else {
           if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {
             if (!keyboardState.isShiftPress) {
@@ -119,6 +140,7 @@ export function addEventHandler(keyboardObj, keyboardState) {
 
   textArea.addEventListener('keyup', (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     for (let i = 0; i < buttons.length; i += 1) {
       if (e.code == buttons[i].id) {
@@ -138,5 +160,10 @@ export function addEventHandler(keyboardObj, keyboardState) {
       changeCharValue(keys, buttons, keyboardState);
       keyboardState.unPressKey(e.code);
     }
+  });
+
+  textArea.addEventListener('input', (e) => {
+    e.stopPropagation();
+    console.log('bla');
   });
 }

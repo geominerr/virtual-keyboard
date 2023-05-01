@@ -2,8 +2,7 @@ const keyboardState = {
   language: 'en',
   isCapsPress: false,
   isShiftPress: false,
-  isCtrlLeftPress: false,
-  isCtrlRightPress: false,
+  isCtrlPress: false,
   isAltPress: false,
   isSavedState: false,
 
@@ -15,11 +14,8 @@ const keyboardState = {
     if (keyCode == 'ShiftLeft' || keyCode == 'ShiftRight') {
       this.isShiftPress = true;
     }
-    if (keyCode == 'ControlLeft') {
-      this.isCtrlLeftPress = true;
-    }
-    if (keyCode == 'ControlRight') {
-      this.isCtrlRightPress = true;
+    if (keyCode == 'ControlLeft' || keyCode == 'ControlRight') {
+      this.isCtrlPress = true;
     }
     if (keyCode == 'AltLeft' || keyCode == 'AlrRight') {
       this.isAltPress = true;

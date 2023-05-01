@@ -2,8 +2,11 @@ const keyboardState = {
   language: 'en',
   isCapsPress: false,
   isShiftPress: false,
-  isCtrlPress: false,
+  isCtrlLeftPress: false,
+  isCtrlRightPress: false,
   isAltPress: false,
+  isSavedState: false,
+
 
   pressKey(keyCode) {
     if (keyCode == 'CapsLock') {
@@ -12,12 +15,16 @@ const keyboardState = {
     if (keyCode == 'ShiftLeft' || keyCode == 'ShiftRight') {
       this.isShiftPress = true;
     }
-    if (keyCode == 'ControlLeft' || keyCode == 'ControlRight') {
-      this.isCtrlPress = true;
+    if (keyCode == 'ControlLeft') {
+      this.isCtrlLeftPress = true;
+    }
+    if (keyCode == 'ControlRight') {
+      this.isCtrlRightPress = true;
     }
     if (keyCode == 'AltLeft' || keyCode == 'AlrRight') {
       this.isAltPress = true;
     }
+
   },
 
   unPressKey(keyCode) {
@@ -34,10 +41,8 @@ const keyboardState = {
 
   changeLanguage() {
     this.language = this.language == 'en' ? 'ru' : 'en';
-  },
-
-  saveLanguageToLocalStorage() {
     localStorage.setItem('PinkPeppaPig', JSON.stringify(keyboardState));
+    this.isSavedState = true;
   },
 
   setLanguage() {
@@ -49,7 +54,9 @@ const keyboardState = {
         console.warn('Anyone else used PinkPeppaPig :-0 ?! Please clear localStorage!');
       }
     } else {
-      console.warn('Please enable localStorage in your browser settings!');
+      if (this.isSavedState) {
+        console.warn('Please enable localStorage in your browser settings!');
+      }
     }
   }
 };

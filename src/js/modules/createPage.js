@@ -10,7 +10,7 @@ function createPage(obj, language) {
   const paragraphOS = createElement('p', 'description');
   paragraphOS.innerText = 'The keyboard was created in the Windows OS';
   const paragraphLang = createElement('p', 'description');
-  paragraphLang.innerText = 'To switch the language combination: left ctrl + alt';
+  paragraphLang.innerText = 'To switch the language combination: ctrl + alt';
 
   for (let i = 0; i < rows.length; i += 1) {
     const rowKeys = createRowKeys(rows[i], keys, language);

@@ -6,7 +6,6 @@ const keyboardState = {
   isAltPress: false,
   isSavedState: false,
 
-
   pressKey(keyCode) {
     if (keyCode == 'CapsLock') {
       this.isCapsPress = this.isCapsPress ? false : true;

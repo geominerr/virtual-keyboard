@@ -1,4 +1,4 @@
-export function createPage(obj, language) {
+function createPage(obj, language) {
   const { rows, keys } = obj;
   const body = document.querySelector('body');
   const wrapper = createElement('div', 'wrapper');
@@ -14,12 +14,10 @@ export function createPage(obj, language) {
 
   for (let i = 0; i < rows.length; i += 1) {
     const rowKeys = createRowKeys(rows[i], keys, language);
-
     keyboard.appendChild(rowKeys);
   }
 
   addElements(wrapper, title, textArea, keyboard, paragraphOS, paragraphLang);
-
   body.appendChild(wrapper);
 }
 
@@ -56,3 +54,5 @@ function addElements(parent, ...elements) {
     parent.appendChild(elements[i]);
   }
 }
+
+export { createPage };

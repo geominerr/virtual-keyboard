@@ -32,7 +32,6 @@ function editTextAreaData(textarea, key) {
           textarea.value = textBefore.substring(0, textBefore.length - 1) + textAfter;
           textarea.selectionStart = positionCursor - 1;
           textarea.selectionEnd = textarea.selectionStart;
-          console.log(positionCursor);
         }
       }
     }
@@ -51,11 +50,9 @@ function editTextAreaData(textarea, key) {
           let textBefore = text.substring(0, positionCursor);
           let textAfter = text.substring(positionCursor + 1, text.length);
 
-          console.log(text.length, positionCursor);
           textarea.value = textBefore + textAfter;
           textarea.selectionStart = positionCursor;
           textarea.selectionEnd = textarea.selectionStart;
-          console.log(positionCursor);
         }
       }
     }
@@ -190,10 +187,6 @@ function pasteText(textarea, temp) {
       textarea.value += temp;
     }
   }
-}
-
-function cancelLastInput(textarea, stack){
-  
 }
 
 function getPositionCursor(textarea) {

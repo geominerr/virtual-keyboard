@@ -1,6 +1,6 @@
 import { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage, copyText, selectAllText, pasteText } from './buttonActions.js';
 
-export function addEventHandler(keyboardObj, keyboardState) {
+function addEventHandler(keyboardObj, keyboardState) {
   const { keysChar, keys } = keyboardObj;
   const textArea = document.querySelector('.textarea');
   const buttons = document.querySelectorAll('.key');
@@ -53,7 +53,6 @@ export function addEventHandler(keyboardObj, keyboardState) {
           shiftRight.classList.add('key--active');
         }
       }
-
     }
 
     for (let i = 0; i < buttons.length; i += 1) {
@@ -90,7 +89,6 @@ export function addEventHandler(keyboardObj, keyboardState) {
     if (e.code == 'ControlLeft' || e.code == 'ControlRight') {
       keyboardState.pressKey(e.code);
     }
-
 
     if (e.code == 'AltLeft' || e.code == 'AltRight') {
       if (keyboardState.isCtrlPress) {
@@ -160,3 +158,5 @@ export function addEventHandler(keyboardObj, keyboardState) {
     }
   });
 }
+
+export { addEventHandler };

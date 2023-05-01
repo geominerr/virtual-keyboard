@@ -41,7 +41,7 @@ function createRowKeys(row, obj, language) {
 
 function createKey(key, obj, language) {
   const style = obj[key].styleCSS;
-  const valueKey = language == 'en' ? obj[key].value : obj[key].valueRu;
+  const valueKey = language === 'en' ? obj[key].value : obj[key].valueRu;
   const button = createElement('div', style);
   button.setAttribute('id', key);
   button.innerHTML = valueKey;
@@ -55,4 +55,6 @@ function addElements(parent, ...elements) {
   }
 }
 
-export { createPage };
+export {
+  createPage,
+};

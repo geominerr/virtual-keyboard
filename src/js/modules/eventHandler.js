@@ -1,4 +1,6 @@
-import { editTextAreaData, changeCharValue, changeLetterCase, changeLanguage, copyText, selectAllText, pasteText } from './buttonActions.js';
+import {
+  editTextAreaData, changeCharValue, changeLetterCase, changeLanguage, copyText, selectAllText, pasteText,
+} from './buttonActions.js';
 
 function addEventHandler(keyboardObj, keyboardState) {
   const { keysChar, keys } = keyboardObj;
@@ -15,9 +17,9 @@ function addEventHandler(keyboardObj, keyboardState) {
   });
 
   document.addEventListener('click', (e) => {
-    let target = e.target;
+    const { target } = e;
 
-    if (target.id == 'CapsLock') {
+    if (target.id === 'CapsLock') {
       changeLetterCase(buttons);
       if (!target.classList.contains('key--active')) {
         target.classList.add('key--active');
@@ -28,26 +30,24 @@ function addEventHandler(keyboardObj, keyboardState) {
       }
     }
 
-    if (target.id == 'ShiftLeft' || target.id == 'ShiftRight') {
+    if (target.id === 'ShiftLeft' || target.id === 'ShiftRight') {
       if (keyboardState.isShiftPress) {
         if (target.classList.contains('key--active')) {
           target.classList.remove('key--active');
           changeCharValue(keys, buttons, keyboardState);
           keyboardState.unPressKey(target.id);
+        } else if (target.id === 'ShiftLeft') {
+          shiftLeft.classList.add('key--active');
+          shiftRight.classList.remove('key--active');
         } else {
-          if (target.id == 'ShiftLeft') {
-            shiftLeft.classList.add('key--active');
-            shiftRight.classList.remove('key--active');
-          } else {
-            shiftRight.classList.add('key--active');
-            shiftLeft.classList.remove('key--active');
-          }
+          shiftRight.classList.add('key--active');
+          shiftLeft.classList.remove('key--active');
         }
       } else {
         changeCharValue(keys, buttons, keyboardState);
         keyboardState.pressKey(target.id);
 
-        if (target.id == 'ShiftLeft') {
+        if (target.id === 'ShiftLeft') {
           shiftLeft.classList.add('key--active');
         } else {
           shiftRight.classList.add('key--active');
@@ -56,8 +56,7 @@ function addEventHandler(keyboardObj, keyboardState) {
     }
 
     for (let i = 0; i < buttons.length; i += 1) {
-      if (target.id == buttons[i].id) {
-
+      if (target.id === buttons[i].id) {
         if (keysChar.includes(buttons[i].id)) {
           editTextAreaData(textArea, buttons[i]);
 
@@ -75,7 +74,7 @@ function addEventHandler(keyboardObj, keyboardState) {
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
 
-    if (e.code == 'CapsLock') {
+    if (e.code === 'CapsLock') {
       changeLetterCase(buttons);
       if (!capsLock.classList.contains('key--active')) {
         capsLock.classList.add('key--active');
@@ -86,49 +85,47 @@ function addEventHandler(keyboardObj, keyboardState) {
       }
     }
 
-    if (e.code == 'ControlLeft' || e.code == 'ControlRight') {
+    if (e.code === 'ControlLeft' || e.code === 'ControlRight') {
       keyboardState.pressKey(e.code);
     }
 
-    if (e.code == 'AltLeft' || e.code == 'AltRight') {
+    if (e.code === 'AltLeft' || e.code === 'AltRight') {
       if (keyboardState.isCtrlPress) {
         keyboardState.changeLanguage();
         changeLanguage(keys, buttons, keyboardState);
       }
     }
 
-    if (e.code == 'KeyA') {
+    if (e.code === 'KeyA') {
       if (keyboardState.isCtrlPress) {
         selectAllText(textArea);
       }
     }
 
-    if (e.code == 'KeyC') {
+    if (e.code === 'KeyC') {
       if (keyboardState.isCtrlPress) {
         clipBoard = copyText(textArea, clipBoard);
       }
     }
 
-    if (e.code == 'KeyV') {
+    if (e.code === 'KeyV') {
       if (keyboardState.isCtrlPress) {
         pasteText(textArea, clipBoard);
       }
     }
 
     for (let i = 0; i < buttons.length; i += 1) {
-      if (e.code == buttons[i].id) {
+      if (e.code === buttons[i].id) {
         buttons[i].classList.add('key--active');
 
         if (keysChar.includes(buttons[i].id)) {
           if (!keyboardState.isCtrlPress) {
             editTextAreaData(textArea, buttons[i]);
           }
-        } else {
-          if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {
-            if (!keyboardState.isShiftPress) {
-              changeCharValue(keys, buttons, keyboardState);
-              keyboardState.pressKey(e.code);
-            }
+        } else if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+          if (!keyboardState.isShiftPress) {
+            changeCharValue(keys, buttons, keyboardState);
+            keyboardState.pressKey(e.code);
           }
         }
       }
@@ -139,12 +136,12 @@ function addEventHandler(keyboardObj, keyboardState) {
     e.preventDefault();
 
     for (let i = 0; i < buttons.length; i += 1) {
-      if (e.code == buttons[i].id) {
+      if (e.code === buttons[i].id) {
         buttons[i].classList.remove('key--active');
       }
     }
 
-    if (e.code == 'ControlLeft' || e.code == 'ControlRight') {
+    if (e.code === 'ControlLeft' || e.code === 'ControlRight') {
       keyboardState.unPressKey(e.code);
     }
 
@@ -152,11 +149,13 @@ function addEventHandler(keyboardObj, keyboardState) {
       capsLock.classList.add('key--active');
     }
 
-    if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
       changeCharValue(keys, buttons, keyboardState);
       keyboardState.unPressKey(e.code);
     }
   });
 }
 
-export { addEventHandler };
+export {
+  addEventHandler,
+};

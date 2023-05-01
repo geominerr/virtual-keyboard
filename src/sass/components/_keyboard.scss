@@ -63,16 +63,10 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
 
-  &:hover {
-    background: rgba(201, 150, 72, 0.7);
-  }
-
   &:active {
     transform: translateY(0px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px rgba(206, 183, 36, 0.725)
   }
-
-
 
   &--backspace,
   &--caps-lock,
@@ -92,7 +86,6 @@
   &--space {
     width: 375px;
   }
-
 
   &--tab,
   &--caps-lock,
@@ -115,9 +108,8 @@
   }
 
   &--active {
-    background: rgba(201, 150, 72, 0.7);
     transform: translateY(0px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(206, 183, 36, 0.725);
   }
 }
 

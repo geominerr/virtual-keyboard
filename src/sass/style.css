@@ -76,12 +76,9 @@ body {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
 }
-.key:hover {
-  background: rgba(201, 150, 72, 0.7);
-}
 .key:active {
   transform: translateY(0px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(206, 183, 36, 0.725);
 }
 .key--backspace,
 .key--caps-lock,
@@ -118,9 +115,8 @@ body {
   font-weight: 700;
 }
 .key--active {
-  background: rgba(201, 150, 72, 0.7);
   transform: translateY(0px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(206, 183, 36, 0.725);
 }
 
 .description {

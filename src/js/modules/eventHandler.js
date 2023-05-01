@@ -75,7 +75,6 @@ export function addEventHandler(keyboardObj, keyboardState) {
 
   textArea.addEventListener('keydown', (e) => {
     e.preventDefault();
-    e.stopPropagation();
 
     if (e.code == 'CapsLock') {
       changeLetterCase(buttons);
@@ -88,15 +87,15 @@ export function addEventHandler(keyboardObj, keyboardState) {
       }
     }
 
-    if (e.code == 'ControlLeft') {
+    if (e.code == 'ControlLeft' || e.code == 'ControlRight') {
       keyboardState.pressKey(e.code);
     }
 
-    if (e.code == 'AltLeft') {
+
+    if (e.code == 'AltLeft' || e.code == 'AltRight') {
       if (keyboardState.isCtrlPress) {
         keyboardState.changeLanguage();
         changeLanguage(keys, buttons, keyboardState);
-        keyboardState.saveLanguageToLocalStorage();
       }
     }
 
@@ -140,7 +139,6 @@ export function addEventHandler(keyboardObj, keyboardState) {
 
   textArea.addEventListener('keyup', (e) => {
     e.preventDefault();
-    e.stopPropagation();
 
     for (let i = 0; i < buttons.length; i += 1) {
       if (e.code == buttons[i].id) {
@@ -160,10 +158,5 @@ export function addEventHandler(keyboardObj, keyboardState) {
       changeCharValue(keys, buttons, keyboardState);
       keyboardState.unPressKey(e.code);
     }
-  });
-
-  textArea.addEventListener('input', (e) => {
-    e.stopPropagation();
-    console.log('bla');
   });
 }

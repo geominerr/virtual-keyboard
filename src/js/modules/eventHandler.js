@@ -1,5 +1,6 @@
 import {
-  editTextAreaData, changeCharValue, changeLetterCase, changeLanguage, copyText, selectAllText, pasteText,
+  editTextAreaData, changeCharValue, changeLetterCase,
+  changeLanguage, copyText, selectAllText, pasteText,
 } from './buttonActions.js';
 
 function addEventHandler(keyboardObj, keyboardState) {
@@ -156,6 +157,4 @@ function addEventHandler(keyboardObj, keyboardState) {
   });
 }
 
-export {
-  addEventHandler,
-};
+export default { addEventHandler };

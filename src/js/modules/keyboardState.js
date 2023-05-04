@@ -45,14 +45,12 @@ const keyboardState = {
       if (savedKeyboardState?.language) {
         this.language = savedKeyboardState.language;
       } else {
-        console.warn('Anyone else used PinkPeppaPig :-0 ?! Please clear localStorage!');
+        throw new Error('Anyone else used PinkPeppaPig :-0 ?! Please clear localStorage!');
       }
     } else if (this.isSavedState) {
-      console.warn('Please enable localStorage in your browser settings!');
+      throw new Error('Please enable localStorage in your browser settings!');
     }
   },
 };
 
-export {
-  keyboardState,
-};
+export default { keyboardState };

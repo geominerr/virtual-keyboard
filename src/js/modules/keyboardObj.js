@@ -467,6 +467,4 @@ const KEYBOARD = {
 
 };
 
-export {
-  KEYBOARD,
-};
+export default { KEYBOARD };
